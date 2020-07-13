@@ -16,7 +16,7 @@ func readyHandler(s *discordgo.Session, event *discordgo.Ready) {
 }
 
 func commandsHandler(s *discordgo.Session, m *discordgo.MessageCreate) {
-	if !strings.HasPrefix(m.Content, "!manners ") || m.Member.User.Bot {
+	if !strings.HasPrefix(m.Content, "!manners ") || m.Author.Bot {
 		return
 	}
 

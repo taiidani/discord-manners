@@ -1,0 +1,19 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Log Into Registry
+        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+      - name: Pull Cache
+        run: docker pull ghcr.io/${GITHUB_REPOSITORY}:latest
+      - name: Build Image
+        run: docker build . --tag ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_REF} --cache-from ghcr.io/${GITHUB_REPOSITORY}:latest
+      - name: Push Image
+        run: docker push ghcr.io/${GITHUB_REPOSITORY}:${GITHUB_REF}

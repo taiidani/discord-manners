@@ -21,3 +21,4 @@ COPY --from=0 /app/main /app
 
 EXPOSE 8080
 ENTRYPOINT [ "/app" ]
+LABEL org.opencontainers.image.source=https://github.com/taiidani/discord-manners

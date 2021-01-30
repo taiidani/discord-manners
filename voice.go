@@ -158,13 +158,13 @@ func (v *voiceGuider) updateMessageReactions(elapsed time.Duration) error {
 func findVoiceChannel(s *discordgo.Session, guildID, channelName string) (*discordgo.Channel, error) {
 	channels, err := s.GuildChannels(guildID)
 	if err != nil {
-		return nil, fmt.Errorf("Could not enumerate guild channels: %w", err)
+		return nil, fmt.Errorf("could not enumerate guild channels: %w", err)
 	}
 
 	for _, channel := range channels {
 		if channel.Name == channelName {
 			if channel.Bitrate <= 0 {
-				return channel, fmt.Errorf("This does not appear to be a voice channel")
+				return channel, fmt.Errorf("this does not appear to be a voice channel")
 			}
 			return channel, nil
 		}

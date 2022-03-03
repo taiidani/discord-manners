@@ -1,4 +1,4 @@
-FROM golang:1.17.6-alpine
+FROM golang:1.17.7-alpine
 
 # Build the app, dependencies first
 COPY go.mod go.sum /app/

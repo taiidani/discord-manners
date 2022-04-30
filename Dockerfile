@@ -1,6 +1,8 @@
-FROM golang:1.17.7-alpine
+FROM golang:1.18.1-alpine
 
 # Build the app, dependencies first
+RUN apk add --no-cache git
+
 COPY go.mod go.sum /app/
 WORKDIR /app
 RUN go mod download

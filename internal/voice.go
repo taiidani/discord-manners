@@ -1,17 +1,14 @@
-package main
+package internal
 
 import (
 	"context"
 	"fmt"
 	"log"
 	"math"
-	"sync"
 	"time"
 
 	"github.com/bwmarrin/discordgo"
 )
-
-var guiders = sync.WaitGroup{}
 
 type voiceGuider struct {
 	waitTime      float64                    // How long to wait in silence before guiding to speak
@@ -24,9 +21,9 @@ type voiceGuider struct {
 	reactionState string                     // The current reaction set on the message
 }
 
-func startGuider(ctx context.Context, g *voiceGuider, channelName string) {
-	guiders.Add(1)
-	defer guiders.Done()
+func (b *Bot) startGuider(ctx context.Context, g *voiceGuider, channelName string) {
+	b.guiders.Add(1)
+	defer b.guiders.Done()
 
 	const defaultWaitTime = 3
 	g.waitTime = defaultWaitTime

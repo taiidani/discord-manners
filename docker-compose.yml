@@ -1,6 +1,0 @@
-services:
-    app:
-        image: taiidani/discord-manners:latest
-        build: .
-        environment:
-            DISCORD_TOKEN: $DISCORD_TOKEN
